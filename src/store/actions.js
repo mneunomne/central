@@ -1,4 +1,4 @@
-import { L } from 'vue2-leaflet'
+// import { L } from 'vue2-leaflet'
 
 export default {
   loadJSON ({ commit, state }) {
@@ -11,10 +11,6 @@ export default {
     return state.data.trajetos[id] || false
   },
   setCurrentMarkers ({state, commit}, pontos) {
-    pontos.map((n) => {
-      return L.latLng(n.latlng.lat, n.latlng.lng)
-    })
-    console.log('pontos', pontos)
     commit('set_current_markers', pontos)
   }
 }

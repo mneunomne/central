@@ -3,13 +3,14 @@
     <h1>Home page</h1>
     <ul>
       <li>
-        <router-link           
+        <router-link
           v-for="(trajeto, index) in getTrajetos"
           v-on:click.native="onClickTrajeto(trajeto)"
-          :to="{ 
+          v-bind:key="index"
+          :to="{
             name: 'trajeto', 
-            params: { 
-              name: trajeto.title, 
+            params: {
+              name: trajeto.title,
               id: index
             }
           }"
@@ -23,7 +24,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'hello',
   data () {

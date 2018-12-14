@@ -5,11 +5,17 @@
       ref='myMap'
       :zoom="zoom"
       :center="center"
-      :bounds="bounds">
+      :bounds="getBoundsFromMarkers(getCurrentMarkers)">
     	<l-tile-layer :url="url"/>
-      <l-marker v-for="(marker, index) in getCurrentMarkers" :lat-lng="marker.latlng"></l-marker>
+      <l-marker 
+        v-for="(marker, index) in getCurrentMarkers"
+        :lat-lng="getLatLng(marker.latlng)"
+        v-bind:key="index"
+      ></l-marker>
     </l-map>
-    <router-link id='page-title' :to="{ name: 'Home'}"><h1>{{ getProjectTitle }}</h1></router-link>
+    <router-link id='page-title' :to="{ name: 'Home'}">
+      <h1>{{ getProjectTitle }}</h1>
+    </router-link>
     <router-view class='route'></router-view>
   </div>
 </template>
@@ -38,14 +44,29 @@ export default {
   methods: {
     ...mapActions([
       'loadJSON'
-    ])
+    ]),
+    getLatLng (latlng) {
+      return L.latLng(latlng.lat, latlng.lng)
+    },
+    getBoundsFromMarkers (markers) {
+      var topleft = {lat: -180, lng: 180} // max lat min lng
+      var bottomright = {lat: 180, lng: -180} // max lat min lng
+      for (var i in markers) {
+        topleft.lat = Math.max(markers[i].latlng.lat, topleft.lat)
+        topleft.lng = Math.min(markers[i].latlng.lng, topleft.lng)
+        bottomright.lat = Math.min(markers[i].latlng.lat, bottomright.lat)
+        bottomright.lng = Math.max(markers[i].latlng.lng, bottomright.lng)
+      }
+      var tlCorner = L.latLng(topleft.lat, topleft.lng)
+      var brCorner = L.latLng(bottomright.lat, bottomright.lng)
+      return L.latLngBounds(tlCorner, brCorner)
+    }
   },
   mounted () {
     this.loadJSON()
-  },
-  watch: {
-    getCurrentMarkers (markers) {
-
+    this.$refs.myMap.fitBounds([[40.712, -74.227], [40.774, -74.125]])
+    for (var i in this.getCurrentMarkers) {
+      console.log('ponto', this.getCurrentMarkers[i])
     }
   }
 }
