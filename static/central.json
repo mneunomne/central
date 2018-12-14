@@ -1,0 +1,36 @@
+{
+	"title": "central",
+	"subtitle": "",
+	"text": "",
+	"trajetos": [
+		{
+			"title": "central - cinelândia",
+			"color": "",
+			"pontos": [
+				{
+					"title": "respiradouro",
+					"fotos": [""],
+					"text": "aaaaa",
+					"latlng": {"lat": -22.9081529, "lng": -43.1776315}
+				},
+				{
+					"title": "outro ponto",
+					"fotos": [""],
+					"text": "bbbbb",
+					"latlng": {"lat": -22.9081287, "lng": -43.1771733}
+				}
+			]
+		},
+		{
+			"title": "Praça Mauá",
+			"color": "",
+			"pontos": [
+				{
+					"fotos": [""],
+					"text": "aaaaa",
+					"latlng": {"lat": 0, "lng": 0}
+				}
+			]
+		}
+	]	
+}
