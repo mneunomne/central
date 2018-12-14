@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Trajeto from '@/components/Trajeto'
+import Ponto from '@/components/Ponto'
 
 Vue.use(Router)
 
@@ -14,10 +15,16 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/:id/:name',
-      name: 'trajeto',
+      path: '/:trajeto_id/:name',
+      name: 'Trajeto',
       component: Trajeto,
-      props: { default: true }
+      children: [
+        {
+          path: 'ponto/:ponto_id',
+          name: 'Ponto',
+          component: Ponto
+        }
+      ]
     }
   ]
 })

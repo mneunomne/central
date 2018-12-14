@@ -8,14 +8,13 @@
           v-on:click.native="onClickTrajeto(trajeto)"
           v-bind:key="index"
           :to="{
-            name: 'trajeto', 
+            name: 'Trajeto', 
             params: {
-              name: trajeto.title,
-              id: index
+              name: getRouteName(trajeto.title),
+              trajeto_id: index
             }
           }"
-        >
-          <p>{{ trajeto.title }}</p>
+        ><p>{{ trajeto.title }}</p>
         </router-link>
       </li>
     </ul>
@@ -40,6 +39,9 @@ export default {
     ]),
     onClickTrajeto (trajeto) {
       this.setCurrentTrajeto(trajeto)
+    },
+    getRouteName (str) {
+      return str.replace(/ /g, '')
     }
   }
 }
@@ -47,7 +49,11 @@ export default {
 
 <style lang="sass" scoped>
 $maingrey: #ff0040
-#home  
+#home
+  position: absolute
+  top: 100px
+  margin-left: 50px
+  background: white
   h1
-    color: $maingrey    
+    color: $maingrey
 </style>

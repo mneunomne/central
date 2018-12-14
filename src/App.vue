@@ -16,7 +16,7 @@
     <router-link id='page-title' :to="{ name: 'Home'}">
       <h1>{{ getProjectTitle }}</h1>
     </router-link>
-    <router-view class='route'></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -78,12 +78,6 @@ export default {
 	width: 100%
 	height: 100%
 	z-index: 0
-
-.route
-  position: absolute
-  top: 100px
-  margin-left: 10px
-  background: white
 
 #page-title
   h1
