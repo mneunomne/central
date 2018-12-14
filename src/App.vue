@@ -31,7 +31,7 @@ export default {
     return {
       zoom: 20,
       center: L.latLng(-22.907904, -43.1779339),
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+      url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     }
   },
   computed: {
